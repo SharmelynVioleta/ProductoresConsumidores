@@ -100,7 +100,7 @@ La resolución del ejercicio se realizó en el lenguaje de programación C++ y c
  
 
 ### Clase Monitor
-
+<html>
 <body>
 <p style=»text-align: justify;»>
 
@@ -113,7 +113,7 @@ El monitor tiene un candado, que se abre o se cierra, porque existen los método
 El método pantalla, muestra el comportamiento de los productores y consumidores.
 </p>
 </body>
- 
+</html>
 
 
 
