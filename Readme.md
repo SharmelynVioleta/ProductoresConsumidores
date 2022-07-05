@@ -100,7 +100,10 @@ La resolución del ejercicio se realizó en el lenguaje de programación C++ y c
  
 
 ### Clase Monitor
-<div class=text-justify>
+
+<body>
+<p style=»text-align: justify;»>
+
 Los productores y consumidores se comunican con el monitor. Se creó un método (insertar) mediante el cual el productor activará una operación que es insertar. Con una estructura similar se creó un método (extraer) mediante el cual el consumidor activará una operación que es extraer.  
 
 Se asignó una cantidad de 2000 al buffer, la cual es el límite del buffer. Cuando llegue a 2000, se lanzará un mensaje indicando que se está creando letras de más, las cuales se identifican como el sobrante.
@@ -108,7 +111,9 @@ Se asignó una cantidad de 2000 al buffer, la cual es el límite del buffer. Cua
 El monitor tiene un candado, que se abre o se cierra, porque existen los métodos que insertan o extraen. Al momento de insertar o extraer tienen estos candados, lock o unlock, según corresponda.
 
 El método pantalla, muestra el comportamiento de los productores y consumidores.
-</div>
+</p>
+</body>
+ 
 
 
 
@@ -187,7 +192,20 @@ private:
 			printf("(%d) Productor-%d estoy produciendo : %c \n", i, k, letras[aleatorio]);
 		}
 	}
- 
+
+public:
+	Productor(int id)
+	{
+		k = id;
+		t = thread(&Productor::run_thread, this);
+		// t.join();
+	}
+	void join_thread()
+	{
+		t.join();
+	}
+};
+
 ```
 
 
