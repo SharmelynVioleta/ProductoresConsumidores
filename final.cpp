@@ -1,29 +1,69 @@
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <queue>
 #include <thread>
 #include <mutex>
 
 using namespace std;
 
-// g++ monitor04.cpp -lpthread
-
 #define NUM_HILOS 10
 
 int cont = 0;
-int rebosar = 0;
-int memoria[2000];
+int sobra = 0;
 mutex flag;
+
+queue<char> buffer;
+const char letras[26] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
 class Monitor
 {
 public:
-    void inc()
+    void insertar(char alpha, int item)
     {
-        flag.lock();          // LOCK
-        cout << cont << endl; // PRINT
-        flag.unlock();        // UNLOCK
-        for (int i = 0; i < 10; i++)
+        flag.lock();
+        if (buffer.size() == 2000)
         {
-            cont++;
+            sobra += 1;
+            cout << "Soy el sobrante" << endl;
+        }
+        else
+        {
+            buffer.push(alpha);
+            pantalla(alpha, "productor", item);
+        }
+        flag.unlock();
+    }
+
+    void extraer(char alpha, int item)
+    {
+        flag.lock();
+        if (buffer.empty())
+        {
+            sobra += 1;
+            cout << "Estoy sin nada" << endl;
+        }
+        else
+        {
+            buffer.pop();
+            pantalla(alpha, "productor", item);
+        }
+        flag.unlock();
+    }
+
+    void pantalla(char alpha, string personaje, int item)
+    {
+        if (personaje == "productor")
+        {
+            cout << personaje << item << " produjo: "
+                 << alpha << "\tCola: " << buffer.size()
+                 << "L a sobra es: " << sobra << endl;
+        }
+        else
+        {
+            cout << personaje << item << " consume: "
+                 << alpha << "\tCola: " << buffer.size()
+                 << "L a sobra es: " << sobra << endl;
         }
     }
 };
@@ -35,7 +75,7 @@ private:
     thread t;
     void run_thread()
     {
-        monitor->inc(); //	RUN
+        monitor->insertar(char alpha, int item); //	RUN
     }
 
 public:
