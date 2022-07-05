@@ -67,6 +67,7 @@
 
 ### Clase Productor
 
+``` c++
 class Productor
 {
 private:
@@ -95,7 +96,7 @@ public:
 	}
 };
 
-
+```
 
 
  
