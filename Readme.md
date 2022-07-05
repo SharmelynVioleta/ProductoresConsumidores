@@ -47,10 +47,7 @@
 
 # Patrón Composite
 
-[![License][license]][license-file]
-[![Downloads][downloads]][releases]
-[![Last Commit][last-commit]][releases]
-
+  
  [![Git][Git]][git-site]
 [![GitHub][GitHub]][github-site]
  
@@ -61,12 +58,46 @@
 - Código Productores y Consumidores
 - Ejecución
 
-### MARCO CONCEPTUAL
+### Introducción
 
 -   Patrón composite
     -   Si ud. quiere crear estructuras complejas a partir de estructuras simples. Este patrón puede ayudarlo.
 
  
+
+### Clase Productor
+
+class Productor
+{
+private:
+	thread t;
+	int k;
+	void run_thread()
+	{
+		int aleatorio;
+		for (int i = 1; true; i++)
+		{
+			aleatorio = rand() % 26;
+			printf("(%d) Productor-%d estoy produciendo : %c \n", i, k, letras[aleatorio]);
+		}
+	}
+
+public:
+	Productor(int id)
+	{
+		k = id;
+		t = thread(&Productor::run_thread, this);
+		// t.join();
+	}
+	void join_thread()
+	{
+		t.join();
+	}
+};
+
+
+
+
  
 ## REFERENCIAS
 -   Oscar J Blancarte Iturralde. Introducción a los patrones de diseño_ Un enfoque práctico (Spanish Edition. CreateSpace Independent Publishing Platform (2016)
