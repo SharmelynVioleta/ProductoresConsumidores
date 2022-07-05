@@ -55,10 +55,9 @@
 <tr><td>Ejercicio:</td><td>Productores-COnsumidores</td></tr>
 <tr><td colspan="2">RECURSOS:
     <ul>
-        <li href="https://github.com/rescobedoulasalle/git_github"> </li>
-    </ul>
-    <ul>
-        <li href="https://github.com/rescobedoulasalle/so"> </li>
+        <li>https://github.com/rescobedoulasalle/git_github/</li>
+        <li>ttps://github.com/rescobedoulasalle/so/</li>
+ 
     </ul>
 
 </td>
