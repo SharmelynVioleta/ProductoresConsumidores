@@ -45,6 +45,40 @@
 </tdbody>
 </table>
 
+
+<table>
+    <theader>
+        <tr><th colspan="2">EXAMEN FINAL</th></tr>
+    </theader>
+<tbody>
+
+<tr><td>Ejercicio:</td><td>Productores-COnsumidores</td></tr>
+<tr><td colspan="2">RECURSOS:
+    <ul>
+        <li href="https://github.com/rescobedoulasalle/git_github"> </li>
+    </ul>
+    <ul>
+        <li href="https://github.com/rescobedoulasalle/so"> </li>
+    </ul>
+
+</td>
+</<tr>
+<tr><td colspan="2">DOCENTE:
+    <ul>
+        <li>Richart Smith Escobedo Quispe  - r.escobedo@ulasalle.edu.pe</li>
+    </ul>
+</td>
+
+<tr><td colspan="2">ALUMNA:
+    <ul>
+        <li>Sharmelyn  - correo@ulasalle.edu.pe</li>
+    </ul>
+</td>
+</<tr>
+</tdbody>
+</table>
+
+
 # Patrón Composite
 
   
