@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// g++ productores01.cpp -lpthread
+// g++ productores.cpp -lpthread
 
 #define NUM_PRODUCTORES 2
 
@@ -40,7 +40,7 @@ public:
 
 int main(void)
 {
-	thread productores[NUM_PRODUCTORES];
+	Productor *productores[NUM_PRODUCTORES];
 	int identificadores[NUM_PRODUCTORES];
 
 	int i;
@@ -48,23 +48,13 @@ int main(void)
 	for (i = 0; i < NUM_PRODUCTORES; i++)
 	{
 
-		productores[i] = thread(productor, i);
+		productores[i] = new Productor(i);
 	}
 
 	for (i = 0; i < NUM_PRODUCTORES; i++)
 	{
-		productores[i].join();
+		productores[i]->join_thread();
 	}
 
 	return 0;
-}
-
-void productor(int k)
-{
-	int aleatorio;
-	for (int i = 1; true; i++)
-	{
-		aleatorio = rand() % 26;
-		printf("(%d) Productor-%d estoy produciendo : %c \n", i, k, letras[aleatorio]);
-	}
 }

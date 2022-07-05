@@ -53,8 +53,7 @@
 
  [![Git][Git]][git-site]
 [![GitHub][GitHub]][github-site]
- [![C++][C++]][c++-site]
-
+ 
 #
  
 ## CONTENIDO 
@@ -67,18 +66,14 @@
 -   Patrón composite
     -   Si ud. quiere crear estructuras complejas a partir de estructuras simples. Este patrón puede ayudarlo.
 
--   Estructura del patrón de diseño Composite
-    ![PATRON-COMPOSITE-ESTRUCTURA](imagenes/patron_composite_estructura.png)
-    - Fuente: (Blancarte, O.) Introducción a los patrones de diseño.
-
+ 
  
 ## REFERENCIAS
 -   Oscar J Blancarte Iturralde. Introducción a los patrones de diseño_ Un enfoque práctico (Spanish Edition. CreateSpace Independent Publishing Platform (2016)
 
 #
 
-[license]: https://img.shields.io/github/license/rescobedoulasalle/git_github?label=rescobedoulasalle
-[license-file]: https://github.com/rescobedoulasalle/git_github/blob/main/LICENSE
+ 
 
   
 [Git]: https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white
