@@ -93,17 +93,12 @@
 
 ### Introducción
 
-<div class=text-justify>
-Uno de los problemas màs comunes en programación concurrente es el de: productores-consumidores. Existe uno o más procesos generando letras del alfabeto e ingresándolos a un buffer. Existe uno o más consumidores que consume las letras del alfabeto. Es decir que solo los productores o los consumidores, no ambos al mismo tiempo, pueden acceder al buffer en un momento dado. 
+ Uno de los problemas màs comunes en programación concurrente es el de: productores-consumidores. Existe uno o más procesos generando letras del alfabeto e ingresándolos a un buffer. Existe uno o más consumidores que consume las letras del alfabeto. Es decir que solo los productores o los consumidores, no ambos al mismo tiempo, pueden acceder al buffer en un momento dado. 
 La resolución del ejercicio se realizó en el lenguaje de programación C++ y con el paradigma POO, creando clases para los productores, consumidores y para el monitor. Se hizo uso de la librería ``` <thread> ```, que ejecutará en forma paralela el programa. La librería ``` <stdio.h> ```,  nos permite la manipulaciòn de las funciones de entradas y salidas. La librerìa ```<stdlib.h> ``` es una librería estándar de C++. La librerìa ```<mutex> ```para los estados lock o unlocked, esto funciona   como un candado para el monitor. La librerìa ```<queue> ```para generar una cola de entrada y salida de los caracteres del alfabeto.
-</div>
- 
+  
 
 ### Clase Monitor
-<html>
-<body>
-<p style=»text-align: justify;»>
-
+ 
 Los productores y consumidores se comunican con el monitor. Se creó un método (insertar) mediante el cual el productor activará una operación que es insertar. Con una estructura similar se creó un método (extraer) mediante el cual el consumidor activará una operación que es extraer.  
 
 Se asignó una cantidad de 2000 al buffer, la cual es el límite del buffer. Cuando llegue a 2000, se lanzará un mensaje indicando que se está creando letras de más, las cuales se identifican como el sobrante.
@@ -111,10 +106,7 @@ Se asignó una cantidad de 2000 al buffer, la cual es el límite del buffer. Cua
 El monitor tiene un candado, que se abre o se cierra, porque existen los métodos que insertan o extraen. Al momento de insertar o extraer tienen estos candados, lock o unlock, según corresponda.
 
 El método pantalla, muestra el comportamiento de los productores y consumidores.
-</p>
-</body>
-</html>
-
+ 
 
 
 
