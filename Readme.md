@@ -98,14 +98,16 @@ La resolución del ejercicio se realizó en el lenguaje de programación C++ y c
  
 
 ### Clase Monitor
-
-Los productores y consumidores se comunican con el monitor. Se creó un método (insertar) mediante el cual el productor activará una operación que es insertar. Con una estructura similar se creó un método (extraer) mediante el cual el consumidor activará una operación que es extraer.  
+<p style="text-align: justify;">Los productores y consumidores se comunican con el monitor. Se creó un método (insertar) mediante el cual el productor activará una operación que es insertar. Con una estructura similar se creó un método (extraer) mediante el cual el consumidor activará una operación que es extraer.  
 
 Se asignó una cantidad de 2000 al buffer, la cual es el límite del buffer. Cuando llegue a 2000, se lanzará un mensaje indicando que se está creando letras de más, las cuales se identifican como el sobrante.
 
 El monitor tiene un candado, que se abre o se cierra, porque existen los métodos que insertan o extraen. Al momento de insertar o extraer tienen estos candados, lock o unlock, según corresponda.
 
-El método pantalla, muestra el comportamiento de los productores y consumidores.
+El método pantalla, muestra el comportamiento de los productores y consumidores.</p>
+
+
+
 
 ``` c++
 
