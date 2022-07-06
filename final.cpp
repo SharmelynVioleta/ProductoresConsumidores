@@ -4,12 +4,10 @@
 #include <queue>
 #include <thread>
 #include <mutex>
-#include <cstdlib>
-#include <time.h>
 
 using namespace std;
 
-#define NUM_HILOS 5
+#define NUM_PRODUCTOR 5
 
 int cont = 0;
 int sobra = 0;
@@ -70,7 +68,7 @@ public:
     }
 };
 
-class Hilo
+class Productor
 {
 private:
     Monitor *monitor;
@@ -87,11 +85,11 @@ private:
     }
 
 public:
-    Hilo(Monitor *mon, int id)
+    Productor(Monitor *mon, int id)
     {
         monitor = mon;
         item = id;
-        t = thread(&Hilo::run_thread, this);
+        t = thread(&Productor::run_thread, this);
     }
     void join_thread()
     {
@@ -101,19 +99,19 @@ public:
 
 int main()
 {
-    Hilo *hilos[NUM_HILOS];
+    Productor *productor[NUM_PRODUCTOR];
     Monitor *mo;
 
     int i;
-    for (i = 0; i < NUM_HILOS; i++)
+    for (i = 0; i < NUM_PRODUCTOR; i++)
     {
         int id = i + 1;
-        hilos[i] = new Hilo(mo, id);
+        productor[i] = new Productor(mo, id);
     }
 
-    for (i = 0; i < NUM_HILOS; i++)
+    for (i = 0; i < NUM_PRODUCTOR; i++)
     {
-        hilos[i]->join_thread(); //	START
+        productor[i]->join_thread(); //	START
     }
 
     return 0;
