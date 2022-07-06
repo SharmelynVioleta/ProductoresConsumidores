@@ -4,10 +4,12 @@
 #include <queue>
 #include <thread>
 #include <mutex>
+#include <cstdlib>
+#include <time.h>
 
 using namespace std;
 
-#define NUM_HILOS 10
+#define NUM_HILOS 5
 
 int cont = 0;
 int sobra = 0;
@@ -22,7 +24,7 @@ public:
     void insertar(char alpha, int item)
     {
         flag.lock();
-        if (buffer.size() == 2000)
+        if (buffer.size() == 500)
         {
             sobra += 1;
             cout << "Soy el sobrante" << endl;
@@ -73,15 +75,22 @@ class Hilo
 private:
     Monitor *monitor;
     thread t;
+    int item;
     void run_thread()
     {
-        monitor->insertar(char alpha, int item); //	RUN
+        int random;
+        for (int i = 1; true; i++)
+        {
+            random = rand() % 26;
+            monitor->insertar(item, letras[random]);
+        }
     }
 
 public:
-    Hilo(Monitor *mon)
+    Hilo(Monitor *mon, int id)
     {
         monitor = mon;
+        item = id;
         t = thread(&Hilo::run_thread, this);
     }
     void join_thread()
@@ -92,14 +101,14 @@ public:
 
 int main()
 {
-
     Hilo *hilos[NUM_HILOS];
     Monitor *mo;
 
     int i;
     for (i = 0; i < NUM_HILOS; i++)
     {
-        hilos[i] = new Hilo(mo);
+        int id = i + 1;
+        hilos[i] = new Hilo(mo, id);
     }
 
     for (i = 0; i < NUM_HILOS; i++)
