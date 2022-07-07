@@ -103,7 +103,9 @@ Los productores y consumidores se comunican con el monitor. Se creó un método 
 
 Se asignó una cantidad de 2000 al buffer, la cual es el límite del buffer. Cuando llegue a 2000, se lanzará un mensaje indicando que se está creando letras de más, las cuales se identifican como el sobrante.
 
-El monitor tiene un candado, que se abre o se cierra, porque existen los métodos que insertan o extraen. Al momento de insertar o extraer tienen estos candados, lock o unlock, según corresponda.
+Un proceso puede entrar en el monitor, el otro proceso se añadirà a la cola de espera, debido a que la entrada y salida estàn protegidas. El monitor tiene un candado, que se abre o se cierra, porque existen los métodos que insertan o extraen. Al momento de insertar o extraer tienen estos candados, lock o unlock, según corresponda. Una vez que un mètodo se esté ejecutando en el monitor, el monitor, temporalmente se bloquea a sí mismo.
+
+
 
 El método pantalla, muestra el comportamiento de los productores y consumidores.
  
@@ -203,7 +205,42 @@ public:
 
 ```
 
+### Clase Consumidor
 
+La clase consumidor solo puede extraer caracteres del buffer mediante el método extraer. Este método escoge de manera aleatoria los caracteres a extraerse del buffer. Se comprueba si hay elementos en el buffer e irá consumiendo aleatoriamente hasta que el buffer esté vacío. Cuando el buffer esté lleno el proceso que se encuentra en la cola retomará su actividad y seguirá extrayendo caracteres. El mètodo run_thread(), se invoca a sí mismo, mientras el método join_thread() dará inicio a la ejecución.
+
+``` c++
+class Consumidor
+{
+private:
+    Monitor *monitor;
+    thread t;
+    int item;
+    void run_thread()
+    {
+        int random;
+        for (int i = 1; true; i++)
+        {
+            random = rand() % 26;
+            monitor->extraer(letras[random], item);
+        }
+    }
+
+public:
+    Consumidor(int id, Monitor *monit)
+    {
+        monitor = monit;
+        item = id;
+        t = thread(&Consumidor::run_thread, this);
+    }
+    void join_thread()
+    {
+        t.join(); // START
+    }
+};
+
+
+```
  
 ## REFERENCIAS
 -   Oscar J Blancarte Iturralde. Introducción a los patrones de diseño_ Un enfoque práctico (Spanish Edition. CreateSpace Independent Publishing Platform (2016)
