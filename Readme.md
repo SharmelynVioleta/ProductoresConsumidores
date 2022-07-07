@@ -169,7 +169,7 @@ public:
 
 ### Clase Productor
 
-La clase productor solo puede añadir caracteres al buffer mediante el método insertar. Primero se comprueba si hay espacio disponible en el buffer, sino el monitor bloqueará la entrada y lanzará un mensaje diciendo que hay demás, es decir que sobra producto. Cuando el buffer esté vacío el proceso que se encuentra en la cola retomará su actividad y seguirá añadiendo caracteres. 
+La clase productor solo puede añadir caracteres al buffer mediante el método insertar. Este método escoge de manera aleatoria los caracteres a ingresarse en el buffer. Se comprueba si hay espacio disponible en el buffer, sino el monitor bloqueará la entrada y lanzará un mensaje diciendo que hay demás, es decir que sobra producto. Cuando el buffer esté vacío el proceso que se encuentra en la cola retomará su actividad y seguirá añadiendo caracteres. El mètodo run_thread(), se invoca a sí mismo, mientras el método join_thread() dará inicio a la ejecución.
 
 ``` c++
 class Productor
