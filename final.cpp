@@ -27,7 +27,11 @@ public:
         if (buffer.size() == 100)
         {
             sobra += 1;
+<<<<<<< HEAD
             cout << "Hay sobra" << endl;
+=======
+            cout << "Hay sobrante" << endl;
+>>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
         }
         else
         {
@@ -57,15 +61,23 @@ public:
         if (personaje == "productor")
         {
             cout << personaje << item << " produjo: "
+<<<<<<< HEAD
                  << alpha << "\tEn elbuffer hay: "
                  << buffer.size() << " elementos."
+=======
+                 << alpha << "\tEl tamaño del buffer es: " << buffer.size()
+>>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
                  << "\tLa sobra es: " << sobra << endl;
         }
         else
         {
             cout << personaje << item << " consume: "
+<<<<<<< HEAD
                  << alpha << "\tEn elbuffer hay: "
                  << buffer.size() << " elementos."
+=======
+                 << alpha << "\tEl tamaño del buffer es " << buffer.size()
+>>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
                  << "\tLa sobra es: " << sobra << endl;
         }
     }
@@ -82,7 +94,11 @@ private:
         int random;
         for (int i = 1; true; i++)
         {
+<<<<<<< HEAD
             sleep(2);
+=======
+            sleep(1);
+>>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
             random = rand() % 26;
             monitor->insertar(letras[random], item);
         }
@@ -112,7 +128,11 @@ private:
         int random;
         for (int i = 1; true; i++)
         {
+<<<<<<< HEAD
             sleep(2);
+=======
+            sleep(1);
+>>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
             random = rand() % 26;
             monitor->extraer(letras[random], item);
         }
@@ -149,6 +169,10 @@ int main()
     {
         int id = i + 1;
         consume[i] = new Consumidor(id, monit);
+    }
+    for (i = 0; i < NUM_PRODUCTOR; i++)
+    {
+        productor[i]->join_thread(); //	START
     }
 
     for (i = 0; i < NUM_PRODUCTOR; i++)

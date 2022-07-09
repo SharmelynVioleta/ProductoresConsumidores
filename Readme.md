@@ -68,6 +68,12 @@ La resolución del ejercicio se realizó en el lenguaje de programación C++ y c
   
 ### Código Productores y Consumidores
 
+<<<<<<< HEAD
+=======
+###  Código Productores y Consumidores
+
+
+>>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
 #### Clase Monitor
  
 Los productores y consumidores se comunican con el monitor. Se creó un método (insertar) mediante el cual el productor activará una operación que es insertar. Con una estructura similar se creó un método (extraer) mediante el cual el consumidor activará una operación que es extraer.  
@@ -92,7 +98,11 @@ public:
         if (buffer.size() == 100)
         {
             sobra += 1;
+<<<<<<< HEAD
             cout << "Hay sobra" << endl;
+=======
+            cout << "Hay sobrante" << endl;
+>>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
         }
         else
         {
@@ -123,15 +133,23 @@ public:
         if (personaje == "productor")
         {
             cout << personaje << item << " produjo: "
+<<<<<<< HEAD
                  << alpha << "\tEn elbuffer hay: "
                  << buffer.size() << " elementos."
+=======
+                 << alpha << "\tEs el elemento: " << buffer.size()
+>>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
                  << "\tLa sobra es: " << sobra << endl;
         }
         else
         {
             cout << personaje << item << " consume: "
+<<<<<<< HEAD
                  << alpha << "\tEn elbuffer hay: "
                  << buffer.size() << " elementos."
+=======
+                 << alpha << "\tEs el elemento : " << buffer.size()
+>>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
                  << "\tLa sobra es: " << sobra << endl;
         }
     }
@@ -156,7 +174,11 @@ private:
         int random;
         for (int i = 1; true; i++)
         {
+<<<<<<< HEAD
             sleep(2);
+=======
+            sleep(1);
+>>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
             random = rand() % 26;
             monitor->insertar(letras[random], item);
         }
@@ -193,7 +215,12 @@ private:
         int random;
         for (int i = 1; true; i++)
         {
+<<<<<<< HEAD
             sleep(2);
+=======
+            sleep(1);
+
+>>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
             random = rand() % 26;
             monitor->extraer(letras[random], item);
         }
@@ -213,6 +240,7 @@ public:
 };
 
 ```
+<<<<<<< HEAD
 
 #### Main
 
@@ -220,11 +248,62 @@ public:
 ### Ejecución
 
      ![alt text](https://github.com/SharmelynVioleta/Patron_Builder/blob/master/imagenes/patron_builder_estructura.JPG)
+=======
+ 
+
+#### Main
+
+En el main se llama a las clases principales Productor, Consumidor y Monitor. 
+
+``` c++
+
+    int main()
+{
+    Productor *productor[NUM_PRODUCTOR];
+    Consumidor *consume[NUM_PRODUCTOR];
+
+    Monitor *monit;
+
+    int i;
+    for (i = 0; i < NUM_PRODUCTOR; i++)
+    {
+        int id = i + 1;
+        productor[i] = new Productor(id, monit);
+    }
+
+    for (i = 0; i < NUM_CONSUMIDOR; i++)
+    {
+        int id = i + 1;
+        consume[i] = new Consumidor(id, monit);
+    }
+    for (i = 0; i < NUM_PRODUCTOR; i++)
+    {
+        productor[i]->join_thread(); //	START
+    }
+
+    for (i = 0; i < NUM_CONSUMIDOR; i++)
+    {
+        productor[i]->join_thread(); //	START
+    }
+
+    return 0;
+}
+
+```
+
+
+### Ejecución
+
+>>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
 
 
 
 ## REFERENCIAS
+<<<<<<< HEAD
 -   William Stallings. Sistemas Operativos_Aspectos interos y principios de diseño. Pearson Educación S.A. (2005)
+=======
+-   William Stallings. Sistemas Operativos - Aspectos internos y principios de diseño. Pearson Educación S.A. (2005)
+>>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
 
 #
 
