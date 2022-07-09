@@ -68,12 +68,6 @@ La resolución del ejercicio se realizó en el lenguaje de programación C++ y c
   
 ### Código Productores y Consumidores
 
-<<<<<<< HEAD
-=======
-###  Código Productores y Consumidores
-
-
->>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
 #### Clase Monitor
  
 Los productores y consumidores se comunican con el monitor. Se creó un método (insertar) mediante el cual el productor activará una operación que es insertar. Con una estructura similar se creó un método (extraer) mediante el cual el consumidor activará una operación que es extraer.  
@@ -98,11 +92,7 @@ public:
         if (buffer.size() == 100)
         {
             sobra += 1;
-<<<<<<< HEAD
             cout << "Hay sobra" << endl;
-=======
-            cout << "Hay sobrante" << endl;
->>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
         }
         else
         {
@@ -133,23 +123,15 @@ public:
         if (personaje == "productor")
         {
             cout << personaje << item << " produjo: "
-<<<<<<< HEAD
                  << alpha << "\tEn elbuffer hay: "
                  << buffer.size() << " elementos."
-=======
-                 << alpha << "\tEs el elemento: " << buffer.size()
->>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
                  << "\tLa sobra es: " << sobra << endl;
         }
         else
         {
             cout << personaje << item << " consume: "
-<<<<<<< HEAD
                  << alpha << "\tEn elbuffer hay: "
                  << buffer.size() << " elementos."
-=======
-                 << alpha << "\tEs el elemento : " << buffer.size()
->>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
                  << "\tLa sobra es: " << sobra << endl;
         }
     }
@@ -174,11 +156,7 @@ private:
         int random;
         for (int i = 1; true; i++)
         {
-<<<<<<< HEAD
             sleep(2);
-=======
-            sleep(1);
->>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
             random = rand() % 26;
             monitor->insertar(letras[random], item);
         }
@@ -215,12 +193,7 @@ private:
         int random;
         for (int i = 1; true; i++)
         {
-<<<<<<< HEAD
-            sleep(2);
-=======
-            sleep(1);
-
->>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
+            sleep(2); 
             random = rand() % 26;
             monitor->extraer(letras[random], item);
         }
@@ -240,24 +213,14 @@ public:
 };
 
 ```
-<<<<<<< HEAD
 
 #### Main
 
+Instanciamos a la clase Productor, Consumidor y Monitor. 
 
-### Ejecución
+```C++
 
-     ![alt text](https://github.com/SharmelynVioleta/Patron_Builder/blob/master/imagenes/patron_builder_estructura.JPG)
-=======
- 
-
-#### Main
-
-En el main se llama a las clases principales Productor, Consumidor y Monitor. 
-
-``` c++
-
-    int main()
+int main()
 {
     Productor *productor[NUM_PRODUCTOR];
     Consumidor *consume[NUM_PRODUCTOR];
@@ -281,31 +244,39 @@ En el main se llama a las clases principales Productor, Consumidor y Monitor.
         productor[i]->join_thread(); //	START
     }
 
+    for (i = 0; i < NUM_PRODUCTOR; i++)
+    {
+        productor[i]->join_thread();
+    }
+
     for (i = 0; i < NUM_CONSUMIDOR; i++)
     {
-        productor[i]->join_thread(); //	START
+        productor[i]->join_thread();
     }
 
     return 0;
 }
 
-```
 
+```
 
 ### Ejecución
 
->>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
+En la Fig. 1, se observa que el buffer comienza vacìo, posteriormente los productores van agregando elementos al buffer, primero se ve 1 elemento y la cantidad de elementos en el buffer se va incrementando de 1 en 1. Hemos definido 3 productores y dos consumidores. UNa vez que los productores agregaron elementos al buffer, el consumdor se encarga de consumir estos productos. Como aún no se alcanzó el límite del buffer, no hay sobra. 
+Cuando se alcanza el máximo de elementos en el buffer, recién existe un sobrante. Ver Fig. 2.
+
+     ![alt text](https://github.com/SharmelynVioleta/ProductoresConsumidores/blob/master/1.JPG)
+        Fig. 1. Ejecución del programa productores y consumidores.
+
+     ![alt text](https://github.com/SharmelynVioleta/ProductoresConsumidores/blob/master/2.JPG)
+        Fig. 2. El buffer está lleno y hay elementos sobrantes.
+        
 
 
-
-## REFERENCIAS
-<<<<<<< HEAD
+### REFERENCIAS
 -   William Stallings. Sistemas Operativos_Aspectos interos y principios de diseño. Pearson Educación S.A. (2005)
-=======
--   William Stallings. Sistemas Operativos - Aspectos internos y principios de diseño. Pearson Educación S.A. (2005)
->>>>>>> 54e27c6a16d96b6923718c6e69841d733e4f920d
 
-#
+
 
  
 
