@@ -266,9 +266,13 @@ En la Fig. 1, se observa que el buffer comienza vacìo, posteriormente los produ
 Cuando se alcanza el máximo de elementos en el buffer, recién existe un sobrante. Ver Fig. 2.
 
 ![alt text](https://github.com/SharmelynVioleta/ProductoresConsumidores/blob/master/1.JPG)
+       
+       
         Fig. 1. Ejecución del programa productores y consumidores.
 
 ![alt text](https://github.com/SharmelynVioleta/ProductoresConsumidores/blob/master/2.JPG)
+       
+       
         Fig. 2. El buffer está lleno y hay elementos sobrantes.
         
 
