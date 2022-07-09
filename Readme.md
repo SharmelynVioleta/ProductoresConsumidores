@@ -265,10 +265,10 @@ int main()
 En la Fig. 1, se observa que el buffer comienza vacìo, posteriormente los productores van agregando elementos al buffer, primero se ve 1 elemento y la cantidad de elementos en el buffer se va incrementando de 1 en 1. Hemos definido 3 productores y dos consumidores. UNa vez que los productores agregaron elementos al buffer, el consumdor se encarga de consumir estos productos. Como aún no se alcanzó el límite del buffer, no hay sobra. 
 Cuando se alcanza el máximo de elementos en el buffer, recién existe un sobrante. Ver Fig. 2.
 
-     ![alt text](https://github.com/SharmelynVioleta/ProductoresConsumidores/blob/master/1.JPG)
+![alt text](https://github.com/SharmelynVioleta/ProductoresConsumidores/blob/master/1.JPG)
         Fig. 1. Ejecución del programa productores y consumidores.
 
-     ![alt text](https://github.com/SharmelynVioleta/ProductoresConsumidores/blob/master/2.JPG)
+![alt text](https://github.com/SharmelynVioleta/ProductoresConsumidores/blob/master/2.JPG)
         Fig. 2. El buffer está lleno y hay elementos sobrantes.
         
 
