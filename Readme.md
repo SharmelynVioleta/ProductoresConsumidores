@@ -97,7 +97,10 @@
 La resolución del ejercicio se realizó en el lenguaje de programación C++ y con el paradigma POO, creando clases para los productores, consumidores y para el monitor. Se hizo uso de la librería ``` <thread> ```, que ejecutará en forma paralela el programa. La librería ``` <stdio.h> ```,  nos permite la manipulaciòn de las funciones de entradas y salidas. La librerìa ```<stdlib.h> ``` es una librería estándar de C++. La librerìa ```<mutex> ```para los estados lock o unlocked, esto funciona   como un candado para el monitor. La librerìa ```<queue> ```para generar una cola de entrada y salida de los caracteres del alfabeto.
   
 
-### Clase Monitor
+###  Código Productores y Consumidores
+
+
+#### Clase Monitor
  
 Los productores y consumidores se comunican con el monitor. Se creó un método (insertar) mediante el cual el productor activará una operación que es insertar. Con una estructura similar se creó un método (extraer) mediante el cual el consumidor activará una operación que es extraer.  
 
@@ -120,10 +123,10 @@ public:
     void insertar(char alpha, int item)
     {
         flag.lock();
-        if (buffer.size() == 2000)
+        if (buffer.size() == 100)
         {
             sobra += 1;
-            cout << "Soy el sobrante" << endl;
+            cout << "Hay sobrante" << endl;
         }
         else
         {
@@ -144,7 +147,7 @@ public:
         else
         {
             buffer.pop();
-            pantalla(alpha, "productor", item);
+            pantalla(alpha, "consumidor", item);
         }
         flag.unlock();
     }
@@ -154,14 +157,14 @@ public:
         if (personaje == "productor")
         {
             cout << personaje << item << " produjo: "
-                 << alpha << "\tCola: " << buffer.size()
-                 << "L a sobra es: " << sobra << endl;
+                 << alpha << "\tEs el elemento: " << buffer.size()
+                 << "\tLa sobra es: " << sobra << endl;
         }
         else
         {
             cout << personaje << item << " consume: "
-                 << alpha << "\tCola: " << buffer.size()
-                 << "L a sobra es: " << sobra << endl;
+                 << alpha << "\tEs el elemento : " << buffer.size()
+                 << "\tLa sobra es: " << sobra << endl;
         }
     }
 };
@@ -169,7 +172,7 @@ public:
 
 
 
-### Clase Productor
+#### Clase Productor
 
 La clase productor solo puede añadir caracteres al buffer mediante el método insertar. Este método escoge de manera aleatoria los caracteres a ingresarse en el buffer. Se comprueba si hay espacio disponible en el buffer, sino el monitor bloqueará la entrada y lanzará un mensaje diciendo que hay demás, es decir que sobra producto. Cuando el buffer esté vacío el proceso que se encuentra en la cola retomará su actividad y seguirá añadiendo caracteres. El mètodo run_thread(), se invoca a sí mismo, mientras el método join_thread() dará inicio a la ejecución.
 
@@ -185,6 +188,7 @@ private:
         int random;
         for (int i = 1; true; i++)
         {
+            sleep(1);
             random = rand() % 26;
             monitor->insertar(item, letras[random]);
         }
@@ -205,7 +209,7 @@ public:
 
 ```
 
-### Clase Consumidor
+#### Clase Consumidor
 
 La clase consumidor solo puede extraer caracteres del buffer mediante el método extraer. Este método escoge de manera aleatoria los caracteres a extraerse del buffer. Se comprueba si hay elementos en el buffer e irá consumiendo aleatoriamente hasta que el buffer esté vacío. Cuando el buffer esté lleno el proceso que se encuentra en la cola retomará su actividad y seguirá extrayendo caracteres. El mètodo run_thread(), se invoca a sí mismo, mientras el método join_thread() dará inicio a la ejecución.
 
@@ -221,6 +225,8 @@ private:
         int random;
         for (int i = 1; true; i++)
         {
+            sleep(1);
+
             random = rand() % 26;
             monitor->extraer(letras[random], item);
         }
@@ -239,11 +245,57 @@ public:
     }
 };
 
-
 ```
  
+
+#### Main
+
+En el main se llama a las clases principales Productor, Consumidor y Monitor. 
+
+``` c++
+
+    int main()
+{
+    Productor *productor[NUM_PRODUCTOR];
+    Consumidor *consume[NUM_PRODUCTOR];
+
+    Monitor *monit;
+
+    int i;
+    for (i = 0; i < NUM_PRODUCTOR; i++)
+    {
+        int id = i + 1;
+        productor[i] = new Productor(id, monit);
+    }
+
+    for (i = 0; i < NUM_CONSUMIDOR; i++)
+    {
+        int id = i + 1;
+        consume[i] = new Consumidor(id, monit);
+    }
+    for (i = 0; i < NUM_PRODUCTOR; i++)
+    {
+        productor[i]->join_thread(); //	START
+    }
+
+    for (i = 0; i < NUM_CONSUMIDOR; i++)
+    {
+        productor[i]->join_thread(); //	START
+    }
+
+    return 0;
+}
+
+```
+
+
+### Ejecución
+
+
+
+
 ## REFERENCIAS
--   Oscar J Blancarte Iturralde. Introducción a los patrones de diseño_ Un enfoque práctico (Spanish Edition. CreateSpace Independent Publishing Platform (2016)
+-   William Stallings. Sistemas Operativos - Aspectos internos y principios de diseño. Pearson Educación S.A. (2005)
 
 #
 

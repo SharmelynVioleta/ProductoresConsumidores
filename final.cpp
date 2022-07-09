@@ -4,11 +4,12 @@
 #include <queue>
 #include <thread>
 #include <mutex>
+#include <unistd.h>
 
 using namespace std;
 
-#define NUM_PRODUCTOR 1
-#define NUM_CONSUMIDOR 1
+#define NUM_PRODUCTOR 3
+#define NUM_CONSUMIDOR 2
 
 int cont = 0;
 int sobra = 0;
@@ -26,7 +27,7 @@ public:
         if (buffer.size() == 100)
         {
             sobra += 1;
-            cout << "Soy el sobrante" << endl;
+            cout << "Hay sobrante" << endl;
         }
         else
         {
@@ -46,7 +47,7 @@ public:
         else
         {
             buffer.pop();
-            pantalla(alpha, "productor", item);
+            pantalla(alpha, "consumidor", item);
         }
         flag.unlock();
     }
@@ -56,14 +57,14 @@ public:
         if (personaje == "productor")
         {
             cout << personaje << item << " produjo: "
-                 << alpha << "\tCola: " << buffer.size()
-                 << "L a sobra es: " << sobra << endl;
+                 << alpha << "\tEl tamaño del buffer es: " << buffer.size()
+                 << "\tLa sobra es: " << sobra << endl;
         }
         else
         {
             cout << personaje << item << " consume: "
-                 << alpha << "\tCola: " << buffer.size()
-                 << "L a sobra es: " << sobra << endl;
+                 << alpha << "\tEl tamaño del buffer es " << buffer.size()
+                 << "\tLa sobra es: " << sobra << endl;
         }
     }
 };
@@ -79,6 +80,7 @@ private:
         int random;
         for (int i = 1; true; i++)
         {
+            sleep(1);
             random = rand() % 26;
             monitor->insertar(letras[random], item);
         }
@@ -108,6 +110,7 @@ private:
         int random;
         for (int i = 1; true; i++)
         {
+            sleep(1);
             random = rand() % 26;
             monitor->extraer(letras[random], item);
         }
@@ -140,15 +143,14 @@ int main()
         productor[i] = new Productor(id, monit);
     }
 
-    for (i = 0; i < NUM_PRODUCTOR; i++)
-    {
-        productor[i]->join_thread(); //	START
-    }
-
     for (i = 0; i < NUM_CONSUMIDOR; i++)
     {
         int id = i + 1;
         consume[i] = new Consumidor(id, monit);
+    }
+    for (i = 0; i < NUM_PRODUCTOR; i++)
+    {
+        productor[i]->join_thread(); //	START
     }
 
     for (i = 0; i < NUM_CONSUMIDOR; i++)
