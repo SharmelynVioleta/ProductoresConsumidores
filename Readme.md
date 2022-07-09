@@ -68,6 +68,13 @@ La resolución del ejercicio se realizó en el lenguaje de programación C++ y c
   
 ### Código Productores y Consumidores
 
+Lista de caracteres del abecedario que serán puestos al buffer.
+
+``` c++
+
+const char letras[26] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+```
+
 #### Clase Monitor
  
 Los productores y consumidores se comunican con el monitor. Se creó un método (insertar) mediante el cual el productor activará una operación que es insertar. Con una estructura similar se creó un método (extraer) mediante el cual el consumidor activará una operación que es extraer.  
